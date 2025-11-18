@@ -1,8 +1,8 @@
 import { HeroSection } from '@/components/hero-section'
 import { NavButtons } from '@/components/nav-buttons'
+import { AboutMeSection } from '@/components/about-me-section'
 import { VideoSection } from '@/components/video-section'
 import { ProjectsGrid } from '@/components/projects-grid'
-import { UIDesigns } from '@/components/ui-designs'
 import { CTASection } from '@/components/cta-section'
 import { FloatingElements } from '@/components/floating-elements'
 
@@ -11,11 +11,19 @@ export default function Home() {
     <main className="relative">
       <FloatingElements />
       <NavButtons />
-      <HeroSection />
-      <VideoSection />
-      <ProjectsGrid />
-      <UIDesigns />
-      <CTASection />
+      <section id="home">
+        <HeroSection />
+      </section>
+      <AboutMeSection />
+      <section id="languages">
+        <VideoSection />
+      </section>
+      <section id="work">
+        <ProjectsGrid />
+      </section>
+      <section id="contact">
+        <CTASection />
+      </section>
       
       {/* Footer */}
       <footer className="bg-surface/50 border-t border-border py-8 px-6">
