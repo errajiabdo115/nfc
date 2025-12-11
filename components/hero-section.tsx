@@ -1,6 +1,22 @@
 'use client'
 
 export function HeroSection() {
+  function scrollToSection(sectionId: string): void {
+    if (typeof window === 'undefined') return
+
+    const id = sectionId.startsWith('#') ? sectionId.slice(1) : sectionId
+    const target =
+      document.getElementById(id) || document.querySelector<HTMLElement>(`[data-section="${id}"]`)
+
+    if (!target) return
+
+    // If you have a fixed header, adjust this offset (in px) so the section isn't hidden.
+    const headerOffset = 80
+    const top = target.getBoundingClientRect().top + window.scrollY - headerOffset
+
+    window.scrollTo({ top, behavior: 'smooth' })
+  }
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24">
       {/* Background gradient overlay */}
@@ -39,11 +55,11 @@ export function HeroSection() {
 
           {/* Email */}
           <div className="flex items-center gap-2 text-text-muted font-mono text-sm">
-            <span className="text-secondary">✉</span>abdelkarimerraji@gmail.com
+            <span className="text-secondary">✉</span>abdelkarimerraji4@gmail.com
           </div>
 
           {/* Main Headline */}
-          <h1 className="text-7xl md:text-8xl font-black leading-tight text-balance">
+          <h1 className="text-7xl md:text-8 font-black leading-tight text-balance">
             <span className="block text-text">WELCOME</span>
             <span className="block gradient-text italic mt-2">TO MY PORTFOLIO</span>
           </h1>
@@ -59,10 +75,10 @@ export function HeroSection() {
           </div>
 
           <div className="flex gap-4 pt-8">
-            <button className="px-8 py-4 bg-secondary hover:bg-secondary/90 text-background rounded-xl font-bold transition-all duration-300 glow-secondary uppercase tracking-wider text-sm">
+            <button onClick={() => scrollToSection('about')} className="px-8 py-4 bg-secondary hover:bg-secondary/90 text-background rounded-xl font-bold transition-all duration-300 glow-secondary uppercase tracking-wider text-sm">
               About Me
             </button>
-            <button className="px-8 py-4 bg-accent hover:bg-accent/90 text-background rounded-xl font-bold transition-all duration-300 glow-accent uppercase tracking-wider text-sm">
+            <button onClick={() => scrollToSection('work')} className="px-8 py-4 bg-accent hover:bg-accent/90 text-background rounded-xl font-bold transition-all duration-300 glow-accent uppercase tracking-wider text-sm">
               My Work
             </button>
           </div>

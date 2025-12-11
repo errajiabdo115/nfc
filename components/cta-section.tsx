@@ -22,38 +22,56 @@ export function CTASection() {
     const files = e.target.files ? Array.from(e.target.files) : []
     setFormData((prev) => ({ ...prev, files }))
   }
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault()
+  setIsSubmitting(true)
+  setSubmitStatus('idle')
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    setSubmitStatus('idle')
+  try {
+    // Convert files to Base64 only if files exist
+    const filesBase64: { name: string; data: string }[] = []
 
-    try {
-      const response = await fetch('/api/send-contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          message: formData.message,
-        }),
-      })
-
-      if (response.ok) {
-        setSubmitStatus('success')
-        setFormData({ name: '', email: '', phone: '', message: '', files: [] })
-        setTimeout(() => setSubmitStatus('idle'), 5000)
-      } else {
-        setSubmitStatus('error')
-      }
-    } catch (error) {
-      console.log('[v0] Form submission error:', error)
-      setSubmitStatus('error')
-    } finally {
-      setIsSubmitting(false)
-    }
+   
+if (formData.files.length > 0) {
+  for (const file of formData.files) {
+    // file is inferred as File
+    const base64 = await new Promise<string>((resolve, reject) => {
+      const reader = new FileReader()
+      reader.onload = () => resolve(reader.result!.toString())
+      reader.onerror = reject
+      reader.readAsDataURL(file)
+    })
+    filesBase64.push({ name: file.name, data: base64 })
   }
+}
+    const response = await fetch('/api/send-contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        message: formData.message,
+        files: filesBase64, // always send array (can be empty)
+      }),
+    })
+
+    if (response.ok) {
+      setSubmitStatus('success')
+      setFormData({ name: '', email: '', phone: '', message: '', files: [] })
+      setTimeout(() => setSubmitStatus('idle'), 5000)
+    } else {
+      setSubmitStatus('error')
+    }
+  } catch (error) {
+    console.log('[v0] Form submission error:', error)
+    setSubmitStatus('error')
+  } finally {
+    setIsSubmitting(false)
+  }
+}
+
+
 
   return (
     <section id="contact" className="relative py-24 px-6 overflow-hidden">
@@ -118,7 +136,7 @@ export function CTASection() {
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
-                placeholder="+1 (555) 000-0000"
+                placeholder="+212 661-252-184"
                 className="w-full px-4 py-3 bg-background border-2 border-border rounded-lg focus:border-primary focus:outline-none transition-all duration-300 text-text"
               />
             </div>
@@ -172,21 +190,19 @@ export function CTASection() {
             <div>
               <h3 className="text-sm font-mono text-accent mb-2">EMAIL</h3>
               <p className="text-text hover:text-primary transition-all duration-300 cursor-pointer">
-                abdelkarim@example.com
+                abdelkarimerraji4@gmail.com
               </p>
             </div>
             <div>
               <h3 className="text-sm font-mono text-accent mb-2">SOCIAL</h3>
               <div className="flex gap-4">
-                <a href="#" className="text-text hover:text-primary transition-all duration-300">
+                <a href="https://github.com/Abdo115-6" className="text-text hover:text-primary transition-all duration-300">
                   GitHub
                 </a>
-                <a href="#" className="text-text hover:text-primary transition-all duration-300">
+                <a href="https://www.linkedin.com/in/abdelkarim-erraji-650a0b35b/" className="text-text hover:text-primary transition-all duration-300">
                   LinkedIn
                 </a>
-                <a href="#" className="text-text hover:text-primary transition-all duration-300">
-                  Twitter
-                </a>
+               
               </div>
             </div>
             <div>

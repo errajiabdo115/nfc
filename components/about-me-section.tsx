@@ -1,7 +1,9 @@
+'use client'
+
 export function AboutMeSection() {
   const handleDownloadCV = () => {
     const link = document.createElement('a')
-    link.href = '/cv.pdf'
+    link.href = '/Abdelkarim_Erraji_CV.pdf'
     link.download = 'Abdelkarim_Erraji_CV.pdf'
     document.body.appendChild(link)
     link.click()
