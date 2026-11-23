@@ -1,5 +1,7 @@
 'use client'
 
+import { assetUrl } from '@/lib/assets'
+
 interface Project {
   id: string
   title: string
@@ -86,7 +88,7 @@ export function ProjectsGrid() {
               {/* Image Container */}
               <div className="relative aspect-video overflow-hidden bg-black/50">
                 <img
-                  src={project.image || "/placeholder.svg"}
+                  src={assetUrl(project.image || '/placeholder.svg')}
                   alt={project.title}
                   className="w-full h-full object-cover group-hover:scale-110 transition-all duration-300"
                 />

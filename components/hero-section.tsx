@@ -1,5 +1,7 @@
 'use client'
 
+import { assetUrl } from '@/lib/assets'
+
 export function HeroSection() {
   function scrollToSection(sectionId: string): void {
     if (typeof window === 'undefined') return
@@ -93,10 +95,10 @@ export function HeroSection() {
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 pt-6 sm:pt-8">
-            <a href="/abdelkarim-erraji.vcf" download="Abdelkarim-Erraji.vcf" className="px-4 sm:px-8 py-3 sm:py-4 text-center bg-primary hover:bg-primary/90 text-background rounded-xl font-bold transition-all duration-300 glow-primary uppercase tracking-wider text-xs sm:text-sm">
+            <a href={assetUrl('/abdelkarim-erraji.vcf')} download="Abdelkarim-Erraji.vcf" className="px-4 sm:px-8 py-3 sm:py-4 text-center bg-primary hover:bg-primary/90 text-background rounded-xl font-bold transition-all duration-300 glow-primary uppercase tracking-wider text-xs sm:text-sm">
               Save Contact
             </a>
-            <a href="/Abdelkarim_Erraji_CV.pdf" download="Abdelkarim_Erraji_CV.pdf" className="px-4 sm:px-8 py-3 sm:py-4 text-center border-2 border-accent text-accent hover:bg-accent/10 rounded-xl font-bold transition-all duration-300 uppercase tracking-wider text-xs sm:text-sm">
+            <a href={assetUrl('/Abdelkarim_Erraji_CV.pdf')} download="Abdelkarim_Erraji_CV.pdf" className="px-4 sm:px-8 py-3 sm:py-4 text-center border-2 border-accent text-accent hover:bg-accent/10 rounded-xl font-bold transition-all duration-300 uppercase tracking-wider text-xs sm:text-sm">
               Download CV
             </a>
             <button onClick={() => scrollToSection('about')} className="px-4 sm:px-8 py-3 sm:py-4 bg-secondary hover:bg-secondary/90 text-background rounded-xl font-bold transition-all duration-300 glow-secondary uppercase tracking-wider text-xs sm:text-sm">
@@ -127,7 +129,7 @@ export function HeroSection() {
           {/* Inner circle with profile image */}
           <div className="absolute w-44 h-44 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center border-2 border-secondary/50 overflow-hidden">
             <img
-              src="/professional-portrait.png"
+              src={assetUrl('/professional-portrait.png')}
               alt="Abdelkarim Erraji"
               className="w-full h-full object-cover rounded-full"
             />
@@ -136,17 +138,17 @@ export function HeroSection() {
           {/* Small floating project thumbnails around rings */}
           {/* Top Right */}
           <div className="absolute top-0 right-0 sm:-right-12 md:-right-20 w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 rounded-full border-3 border-accent/60 bg-gradient-to-br from-accent/10 to-secondary/10 flex items-center justify-center float-animation" style={{ animationDelay: '0s' }}>
-            <img src="/web-design-concept.png" alt="Project 1" className="w-full h-full object-cover" />
+            <img src={assetUrl('/web-design-concept.png')} alt="Project 1" className="w-full h-full object-cover" />
           </div>
 
           {/* Bottom Left */}
           <div className="absolute bottom-8 left-0 sm:-left-12 md:-left-20 w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 rounded-full border-3 border-primary/60 bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center float-animation" style={{ animationDelay: '2s' }}>
-            <img src="/app-development.png" alt="Project 2" className="w-full h-full object-cover" />
+            <img src={assetUrl('/app-development.png')} alt="Project 2" className="w-full h-full object-cover" />
           </div>
 
           {/* Bottom Right Small */}
           <div className="absolute bottom-0 right-2 sm:-right-8 md:-right-12 w-14 h-14 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full border-2 border-secondary/60 bg-gradient-to-br from-secondary/10 to-primary/10 flex items-center justify-center float-animation" style={{ animationDelay: '1s' }}>
-            <img src="/abstract-ui-elements.png" alt="Project 3" className="w-full h-full object-cover" />
+            <img src={assetUrl('/abstract-ui-elements.png')} alt="Project 3" className="w-full h-full object-cover" />
           </div>
         </div>
       </div>

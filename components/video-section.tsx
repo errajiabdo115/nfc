@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
+import { assetUrl } from '@/lib/assets'
 
 interface LanguageModule {
   id: string
@@ -15,21 +16,21 @@ const languages: LanguageModule[] = [
     id: '1',
     language: 'French',
     flag: '🇫🇷',
-    videoSrc: '/videos/french-intro.mp4',
+    videoSrc: assetUrl('/videos/french-intro.mp4'),
     description: 'Bonjour ! Je suis Abdelkarim Erraji, ingénieur informatique spécialisé dans le développement de solutions web modernes et évolutives.',
   },
   {
     id: '2',
     language: 'English',
     flag: '🇬🇧',
-    videoSrc: '/videos/english-intro.mp4',
+    videoSrc: assetUrl('/videos/english-intro.mp4'),
     description: 'Hi! I\'m Abdelkarim Erraji, an innovative IT engineer building smart and scalable solutions.',
   },
   {
     id: '3',
     language: 'Arabic',
     flag: '🇸🇦',
-    videoSrc: '/videos/arabic-intro.mp4',
+    videoSrc: assetUrl('/videos/arabic-intro.mp4'),
     description: 'مرحبا! أنا عبد الكريم الراجي، مهندس تكنولوجيا المعلومات المتخصص في بناء حلول ذكية وقابلة للتوسع.',
   },
 ]

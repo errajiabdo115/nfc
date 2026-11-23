@@ -43,6 +43,8 @@ const education = [
   },
 ]
 
+import { assetUrl } from '@/lib/assets'
+
 const certifications = [
   'Oracle SQL Proficiency · Oracle',
   'JavaScript Algorithms and Data Structures · freeCodeCamp',
@@ -53,7 +55,7 @@ const certifications = [
 export function AboutMeSection() {
   const handleDownloadCV = () => {
     const link = document.createElement('a')
-    link.href = '/Abdelkarim_Erraji_CV.pdf'
+    link.href = assetUrl('/Abdelkarim_Erraji_CV.pdf')
     link.download = 'Abdelkarim_Erraji_CV.pdf'
     document.body.appendChild(link)
     link.click()
