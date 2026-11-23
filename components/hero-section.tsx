@@ -18,7 +18,7 @@ export function HeroSection() {
   }
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 sm:pt-24 pb-10">
       {/* Background gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-surface opacity-50" />
 
@@ -44,66 +44,88 @@ export function HeroSection() {
       </svg>
 
       {/* Content Container */}
-      <div className="relative z-10 max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
         
         {/* Left Content */}
         <div className="space-y-6">
-          {/* Handle/Social */}
+          {/* Role */}
           <div className="flex items-center gap-2 text-accent font-mono text-sm tracking-wide">
-            <span className="text-primary">@</span>ABDO_CODING404
+            <span className="text-primary">✦</span> FULL-STACK SOFTWARE ENGINEER
           </div>
 
-          {/* Email */}
-          <div className="flex items-center gap-2 text-text-muted font-mono text-sm">
-            <span className="text-secondary">✉</span>abdelkarimerraji4@gmail.com
+          {/* NFC-friendly contact card */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 rounded-xl border border-border bg-surface/70 p-3 sm:p-4 font-mono text-xs sm:text-sm">
+            <a href="tel:+212661252184" className="flex items-center gap-2 text-text-muted hover:text-primary transition-colors">
+              <span className="text-accent">☎</span>
+              <span>0661252184</span>
+            </a>
+            <a href="mailto:abdelkarimerraji4@gmail.com" className="flex items-center gap-2 text-text-muted hover:text-primary transition-colors break-all">
+              <span className="text-secondary">✉</span>
+              <span>abdelkarimerraji4@gmail.com</span>
+            </a>
+            <a href="https://github.com/Abdo115-6" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-text-muted hover:text-primary transition-colors">
+              <span className="text-primary">GH</span>
+              <span>Abdo115-6</span>
+            </a>
+            <a href="https://linkedin.com/in/abdelkarim-erraji" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-text-muted hover:text-primary transition-colors">
+              <span className="text-accent">IN</span>
+              <span>abdelkarim-erraji</span>
+            </a>
+            <span className="sm:col-span-2 text-text-muted">
+              <span className="mr-2">📍</span>Casablanca, Morocco · Mobility: Morocco, France, Germany
+            </span>
           </div>
 
           {/* Main Headline */}
-          <h1 className="text-7xl md:text-8 font-black leading-tight text-balance">
-            <span className="block text-text">WELCOME</span>
-            <span className="block gradient-text italic mt-2">TO MY PORTFOLIO</span>
+          <h1 className="text-4xl sm:text-6xl md:text-7xl font-black leading-[0.95] text-balance">
+            <span className="block text-text">Abdelkarim</span>
+            <span className="block gradient-text">Erraji</span>
           </h1>
 
           {/* Description */}
           <div className="space-y-2 pt-4">
-            <p className="text-2xl font-bold text-text">
-              Innovative IT Engineer,
+            <p className="text-lg sm:text-2xl font-bold text-text">
+              Java / Spring Boot Software Engineer
             </p>
-            <p className="text-2xl font-bold text-text">
-              Building Smart & Scalable Solutions.
+            <p className="text-base sm:text-xl text-text-muted">
+              Final-year engineering student seeking a 2027 internship
             </p>
           </div>
 
-          <div className="flex gap-4 pt-8">
-            <button onClick={() => scrollToSection('about')} className="px-8 py-4 bg-secondary hover:bg-secondary/90 text-background rounded-xl font-bold transition-all duration-300 glow-secondary uppercase tracking-wider text-sm">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 pt-6 sm:pt-8">
+            <a href="/abdelkarim-erraji.vcf" download="Abdelkarim-Erraji.vcf" className="px-4 sm:px-8 py-3 sm:py-4 text-center bg-primary hover:bg-primary/90 text-background rounded-xl font-bold transition-all duration-300 glow-primary uppercase tracking-wider text-xs sm:text-sm">
+              Save Contact
+            </a>
+            <a href="/Abdelkarim_Erraji_CV.pdf" download="Abdelkarim_Erraji_CV.pdf" className="px-4 sm:px-8 py-3 sm:py-4 text-center border-2 border-accent text-accent hover:bg-accent/10 rounded-xl font-bold transition-all duration-300 uppercase tracking-wider text-xs sm:text-sm">
+              Download CV
+            </a>
+            <button onClick={() => scrollToSection('about')} className="px-4 sm:px-8 py-3 sm:py-4 bg-secondary hover:bg-secondary/90 text-background rounded-xl font-bold transition-all duration-300 glow-secondary uppercase tracking-wider text-xs sm:text-sm">
               About Me
             </button>
-            <button onClick={() => scrollToSection('work')} className="px-8 py-4 bg-accent hover:bg-accent/90 text-background rounded-xl font-bold transition-all duration-300 glow-accent uppercase tracking-wider text-sm">
-              My Work
+            <button onClick={() => scrollToSection('experience')} className="px-4 sm:px-8 py-3 sm:py-4 bg-accent hover:bg-accent/90 text-background rounded-xl font-bold transition-all duration-300 glow-accent uppercase tracking-wider text-xs sm:text-sm">
+              Experience
+            </button>
+            <button onClick={() => scrollToSection('work')} className="col-span-2 sm:col-span-3 px-4 sm:px-8 py-3 sm:py-4 border-2 border-primary text-primary hover:bg-primary/10 rounded-xl font-bold transition-all duration-300 uppercase tracking-wider text-xs sm:text-sm">
+              Projects
             </button>
           </div>
-
-          {/* Website URL */}
-          <p className="text-text-muted font-mono text-sm pt-6">
-            www.abdoportfolio404.com
-          </p>
         </div>
 
         {/* Right Side - Neon Rings with Profile Image */}
-        <div className="relative h-96 md:h-[600px] flex items-center justify-center">
+        <div className="relative h-72 sm:h-96 md:h-[600px] flex items-center justify-center mt-2 lg:mt-0">
           
           {/* Large outer neon ring - Purple/Pink */}
-          <div className="absolute w-80 h-80 md:w-96 md:h-96 rounded-full border-4 border-primary/30 animate-pulse">
+          <div className="absolute w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full border-4 border-primary/30 animate-pulse">
             <div className="absolute inset-0 rounded-full border-2 border-transparent border-t-secondary border-r-secondary/50 animate-spin" style={{ animationDuration: '8s' }} />
           </div>
 
           {/* Medium neon ring - Cyan */}
-          <div className="absolute w-64 h-64 md:w-72 md:h-72 rounded-full border-3 border-accent/40">
+          <div className="absolute w-52 h-52 sm:w-64 sm:h-64 md:w-72 md:h-72 rounded-full border-3 border-accent/40">
             <div className="absolute inset-0 rounded-full border-2 border-transparent border-t-accent border-r-primary/50 animate-spin" style={{ animationDuration: '12s', animationDirection: 'reverse' }} />
           </div>
 
           {/* Inner circle with profile image */}
-          <div className="absolute w-56 h-56 md:w-64 md:h-64 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center border-2 border-secondary/50 overflow-hidden">
+          <div className="absolute w-44 h-44 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center border-2 border-secondary/50 overflow-hidden">
             <img
               src="/professional-portrait.png"
               alt="Abdelkarim Erraji"
@@ -113,17 +135,17 @@ export function HeroSection() {
 
           {/* Small floating project thumbnails around rings */}
           {/* Top Right */}
-          <div className="absolute top-0 -right-12 md:-right-20 w-24 h-24 md:w-32 md:h-32 rounded-full border-3 border-accent/60 bg-gradient-to-br from-accent/10 to-secondary/10 flex items-center justify-center float-animation" style={{ animationDelay: '0s' }}>
+          <div className="absolute top-0 right-0 sm:-right-12 md:-right-20 w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 rounded-full border-3 border-accent/60 bg-gradient-to-br from-accent/10 to-secondary/10 flex items-center justify-center float-animation" style={{ animationDelay: '0s' }}>
             <img src="/web-design-concept.png" alt="Project 1" className="w-full h-full object-cover" />
           </div>
 
           {/* Bottom Left */}
-          <div className="absolute bottom-8 -left-12 md:-left-20 w-24 h-24 md:w-32 md:h-32 rounded-full border-3 border-primary/60 bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center float-animation" style={{ animationDelay: '2s' }}>
+          <div className="absolute bottom-8 left-0 sm:-left-12 md:-left-20 w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 rounded-full border-3 border-primary/60 bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center float-animation" style={{ animationDelay: '2s' }}>
             <img src="/app-development.png" alt="Project 2" className="w-full h-full object-cover" />
           </div>
 
           {/* Bottom Right Small */}
-          <div className="absolute bottom-0 -right-8 md:-right-12 w-20 h-20 md:w-24 md:h-24 rounded-full border-2 border-secondary/60 bg-gradient-to-br from-secondary/10 to-primary/10 flex items-center justify-center float-animation" style={{ animationDelay: '1s' }}>
+          <div className="absolute bottom-0 right-2 sm:-right-8 md:-right-12 w-14 h-14 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full border-2 border-secondary/60 bg-gradient-to-br from-secondary/10 to-primary/10 flex items-center justify-center float-animation" style={{ animationDelay: '1s' }}>
             <img src="/abstract-ui-elements.png" alt="Project 3" className="w-full h-full object-cover" />
           </div>
         </div>

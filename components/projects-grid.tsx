@@ -6,50 +6,57 @@ interface Project {
   category: string
   tags: string[]
   image: string
+  repoUrl: string
 }
 
 const projects: Project[] = [
   {
     id: '1',
-    title: 'E-Commerce Platform',
+    title: 'Art E-Commerce Website',
     category: 'Full-Stack',
-    tags: ['React', 'Node.js', 'MongoDB'],
+    tags: ['React', 'Next.js', 'Supabase'],
     image: '/ecommerce-platform.jpg',
+    repoUrl: 'https://github.com/Abdo115-6/e-commerce-website-art',
   },
   {
     id: '2',
-    title: 'Mobile App Design',
-    category: 'Mobile',
-    tags: ['React Native', 'UI/UX'],
-    image: '/mobile-app-interface.jpg',
+    title: 'GAC-4 Java Web Application',
+    category: 'Full-Stack',
+    tags: ['Java', 'Spring Boot', 'Thymeleaf', 'SQL'],
+    image: '/web-design-project-thumbnail.jpg',
+    repoUrl: 'https://github.com/Abdo115-6/GAC-4',
   },
   {
     id: '3',
-    title: 'Backend API System',
+    title: 'Hotel Booking System',
     category: 'Backend',
-    tags: ['TypeScript', 'PostgreSQL', 'GraphQL'],
+    tags: ['Django', 'SQLite', 'SQL'],
     image: '/backend-architecture-diagram.jpg',
+    repoUrl: 'https://github.com/Abdo115-6/javafx-project-hotelbooking',
   },
   {
     id: '4',
-    title: 'Dashboard UI Kit',
-    category: 'Design',
-    tags: ['Figma', 'Design System'],
-    image: '/dashboard-interface.jpg',
+    title: 'Stock Management Mobile App',
+    category: 'Mobile',
+    tags: ['Mobile', 'Sage X3 ERP', 'Stock'],
+    image: '/mobile-app-interface.jpg',
+    repoUrl: 'https://github.com/Abdo115-6/appmobile',
   },
   {
     id: '5',
-    title: 'Social Platform',
+    title: 'Payment Invoice CRUD',
     category: 'Full-Stack',
-    tags: ['Next.js', 'Supabase', 'Tailwind'],
-    image: '/social-networking-app.jpg',
+    tags: ['Angular', 'Spring Boot', 'REST API'],
+    image: '/dashboard-interface.jpg',
+    repoUrl: 'https://github.com/Abdo115-6/rentcar-system',
   },
   {
     id: '6',
-    title: 'AI Chatbot Interface',
-    category: 'Frontend',
-    tags: ['React', 'OpenAI', 'Streaming'],
-    image: '/ai-chatbot-interface.jpg',
+    title: 'Sage X3 Data Integration',
+    category: 'Backend',
+    tags: ['Java', 'Sage X3 ERP', 'API'],
+    image: '/backend-architecture-diagram.jpg',
+    repoUrl: 'https://github.com/Abdo115-6/appmobile',
   },
 ]
 
@@ -68,9 +75,13 @@ export function ProjectsGrid() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project) => (
-            <div
+            <a
               key={project.id}
-              className="group relative bg-surface rounded-xl overflow-hidden border-2 border-border card-hover cursor-pointer"
+              href={project.repoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`View ${project.title} on GitHub`}
+              className="group relative block bg-surface rounded-xl overflow-hidden border-2 border-border card-hover cursor-pointer"
             >
               {/* Image Container */}
               <div className="relative aspect-video overflow-hidden bg-black/50">
@@ -105,7 +116,7 @@ export function ProjectsGrid() {
 
               {/* Hover Overlay */}
               <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/5 to-secondary/0 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none" />
-            </div>
+            </a>
           ))}
         </div>
       </div>

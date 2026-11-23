@@ -188,18 +188,21 @@ if (formData.files.length > 0) {
           {/* Contact Info */}
           <div className="mt-12 pt-8 border-t border-border grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
-              <h3 className="text-sm font-mono text-accent mb-2">EMAIL</h3>
-              <p className="text-text hover:text-primary transition-all duration-300 cursor-pointer">
+              <h3 className="text-sm font-mono text-accent mb-2">PHONE & EMAIL</h3>
+              <a href="tel:+212661252184" className="block text-text hover:text-primary transition-all duration-300">
+                0661252184
+              </a>
+              <a href="mailto:abdelkarimerraji4@gmail.com" className="block text-text hover:text-primary transition-all duration-300 break-all">
                 abdelkarimerraji4@gmail.com
-              </p>
+              </a>
             </div>
             <div>
               <h3 className="text-sm font-mono text-accent mb-2">SOCIAL</h3>
               <div className="flex gap-4">
-                <a href="https://github.com/Abdo115-6" className="text-text hover:text-primary transition-all duration-300">
+                <a href="https://github.com/Abdo115-6" target="_blank" rel="noopener noreferrer" className="text-text hover:text-primary transition-all duration-300">
                   GitHub
                 </a>
-                <a href="https://www.linkedin.com/in/abdelkarim-erraji-650a0b35b/" className="text-text hover:text-primary transition-all duration-300">
+                <a href="https://linkedin.com/in/abdelkarim-erraji" target="_blank" rel="noopener noreferrer" className="text-text hover:text-primary transition-all duration-300">
                   LinkedIn
                 </a>
                

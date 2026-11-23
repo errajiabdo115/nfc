@@ -1,13 +1,12 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
 interface LanguageModule {
   id: string
   language: string
   flag: string
-  videoBg: string
-  videoSrc?: string
+  videoSrc: string
   description: string
 }
 
@@ -16,30 +15,22 @@ const languages: LanguageModule[] = [
     id: '1',
     language: 'French',
     flag: '🇫🇷',
-    videoBg: '/france-professional-video-background.jpg',
-    description: 'Bonjour! Welcome to my portfolio. I\'m a full-stack developer with expertise in modern web technologies.',
+    videoSrc: '/videos/french-intro.mp4',
+    description: 'Bonjour ! Je suis Abdelkarim Erraji, ingénieur informatique spécialisé dans le développement de solutions web modernes et évolutives.',
   },
   {
     id: '2',
     language: 'English',
     flag: '🇬🇧',
-    videoBg: '/uk-professional-speaking-video.jpg',
+    videoSrc: '/videos/english-intro.mp4',
     description: 'Hi! I\'m Abdelkarim Erraji, an innovative IT engineer building smart and scalable solutions.',
   },
   {
     id: '3',
     language: 'Arabic',
     flag: '🇸🇦',
-    videoBg: '/middle-east-professional-video.jpg',
-    description: 'مرحبا بكم! أنا مهندس تكنولوجيا معلومات متخصص في تطوير تطبيقات ويب حديثة.',
-  },
-  {
-    id: '4',
-    language: 'German',
-    flag: '🇩🇪',
-    videoBg: '/germany-professional-video.mp4',
-    videoSrc: '/germany-professional-video.mp4',
-    description: 'Hallo! Ich bin Abdelkarim Erraji, ein innovativer IT-Ingenieur, der intelligente und skalierbare Lösungen entwickelt.',
+    videoSrc: '/videos/arabic-intro.mp4',
+    description: 'مرحبا! أنا عبد الكريم الراجي، مهندس تكنولوجيا المعلومات المتخصص في بناء حلول ذكية وقابلة للتوسع.',
   },
 ]
 
@@ -53,10 +44,8 @@ export function VideoSection() {
     if (videoRef.current) {
       if (isPlaying) {
         videoRef.current.pause()
-        setIsPlaying(false)
       } else {
         videoRef.current.play()
-        setIsPlaying(true)
       }
     }
   }
@@ -74,22 +63,40 @@ export function VideoSection() {
     }
   }
 
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+
+    const onPlay = () => setIsPlaying(true)
+    const onPause = () => setIsPlaying(false)
+
+    video.addEventListener('play', onPlay)
+    video.addEventListener('pause', onPause)
+
+    return () => {
+      video.removeEventListener('play', onPlay)
+      video.removeEventListener('pause', onPause)
+    }
+  }, [activeLanguage])
+
   return (
     <section id="languages" className="relative py-24 px-6">
-      <div className="max-w-7xl mx-auto">
+      <div className="absolute top-1/4 -right-64 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-1/4 -left-64 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
+
+      <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-5xl font-bold mb-4 text-balance">
-            Speaking <span className="gradient-text">Multiple Languages</span>
+            <span className="gradient-text">Multilingual</span> Professional
           </h2>
-          <p className="text-text-muted text-lg">
-            Watch me communicate fluently in different languages
+          <p className="text-text-muted text-lg max-w-2xl mx-auto">
+            Arabic native, with professional working proficiency in English and French
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Left Sidebar - Language Modules */}
           <div className="lg:col-span-1 space-y-4">
-            {languages.map((lang, index) => (
+            {languages.map((lang) => (
               <button
                 key={lang.id}
                 onClick={() => handleLanguageChange(lang.id)}
@@ -104,10 +111,14 @@ export function VideoSection() {
                     <span className="text-4xl">{lang.flag}</span>
                     <div>
                       <h3 className="text-lg font-bold text-text">{lang.language}</h3>
-                      <p className="text-xs text-text-muted">Module {index + 1}</p>
+                      <p className="text-xs text-text-muted">
+                        {lang.language === 'French' ? 'Français' :
+                         lang.language === 'Arabic' ? 'العربية' :
+                         lang.language === 'German' ? 'Deutsch' : 'English'}
+                      </p>
                     </div>
                   </div>
-                  <div className={`text-2xl transition-transform ${activeLanguage === lang.id ? 'rotate-90' : ''}`}>
+                  <div className={`text-2xl text-primary transition-transform ${activeLanguage === lang.id ? 'rotate-90' : ''}`}>
                     {'›'}
                   </div>
                 </div>
@@ -115,81 +126,51 @@ export function VideoSection() {
             ))}
           </div>
 
-          {/* Right Side - Video Player */}
           {activeModule && (
             <div className="lg:col-span-2 space-y-6">
-              {/* Video Container */}
               <div className="relative overflow-hidden rounded-xl border-2 border-primary/30 bg-surface">
                 <div className="aspect-video relative">
-                  {activeModule.videoSrc ? (
-                    <>
-                      <video
-                        ref={videoRef}
-                        className="w-full h-full object-cover"
-                        poster={activeModule.videoBg}
-                        onEnded={handleVideoEnded}
-                        controls={isPlaying}
+                  <video
+                    ref={videoRef}
+                    className="w-full h-full object-cover"
+                    onEnded={handleVideoEnded}
+                    playsInline
+                    preload="metadata"
+                  >
+                    <source src={activeModule.videoSrc} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+
+                  {!isPlaying && (
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-center justify-center">
+                      <button
+                        onClick={handlePlayVideo}
+                        className="w-20 h-20 bg-primary/90 hover:bg-primary rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-2xl"
+                        aria-label={`Play ${activeModule.language} introduction`}
                       >
-                        <source src={activeModule.videoSrc} type="video/mp4" />
-                        Your browser does not support the video tag.
-                      </video>
-                      {!isPlaying && (
-                        <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                          <button 
-                            onClick={handlePlayVideo}
-                            className="w-24 h-24 bg-primary/80 hover:bg-primary rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-2xl"
-                          >
-                            <svg className="w-10 h-10 text-background fill-current ml-1" viewBox="0 0 24 24">
-                              <path d="M5 3v18l15-9z" />
-                            </svg>
-                          </button>
-                        </div>
-                      )}
-                    </>
-                  ) : (
-                    <div
-                      className="w-full h-full bg-cover bg-center relative"
-                      style={{ backgroundImage: `url('${activeModule.videoBg}')` }}
-                    >
-                      <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                        <div className="text-center text-white">
-                          <div className="w-24 h-24 bg-gray-600/80 rounded-full flex items-center justify-center mb-4 mx-auto">
-                            <svg className="w-10 h-10 fill-current" viewBox="0 0 24 24">
-                              <path d="M5 3v18l15-9z" />
-                            </svg>
-                          </div>
-                          <p className="text-sm opacity-80">Video not available</p>
-                        </div>
-                      </div>
+                        <svg className="w-8 h-8 text-background fill-current ml-1" viewBox="0 0 24 24">
+                          <path d="M5 3v18l15-9z" />
+                        </svg>
+                      </button>
                     </div>
                   )}
                 </div>
               </div>
 
-              {/* Video Description */}
               <div className="space-y-4">
                 <h3 className="text-2xl font-bold text-text">
                   {activeModule.language} Introduction
                 </h3>
-                <p className="text-text-muted leading-relaxed">
+                <p className="text-text-muted leading-relaxed text-lg">
                   {activeModule.description}
                 </p>
                 <div className="flex gap-4 pt-4">
-                  {activeModule.videoSrc ? (
-                    <button 
-                      onClick={handlePlayVideo}
-                      className="px-6 py-2 bg-primary hover:bg-primary/90 text-background rounded-lg font-bold transition-all duration-300"
-                    >
-                      {isPlaying ? 'Pause Video' : 'Play Video'}
-                    </button>
-                  ) : (
-                    <button 
-                      disabled
-                      className="px-6 py-2 bg-gray-400 text-gray-600 rounded-lg font-bold cursor-not-allowed"
-                    >
-                      Video Not Available
-                    </button>
-                  )}
+                  <button
+                    onClick={handlePlayVideo}
+                    className="px-6 py-3 bg-gradient-to-r from-primary to-secondary text-background rounded-xl font-bold transition-all duration-300 hover:shadow-xl glow-primary"
+                  >
+                    {isPlaying ? 'Pause Video' : 'Play Introduction'}
+                  </button>
                 </div>
               </div>
             </div>
