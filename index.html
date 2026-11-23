@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Abdelkarim Erraji | Ingénieur Logiciel</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --bg-color: #050b14;
+            --card-bg: #0d1b2a;
+            --primary: #00e5ff;
+            --primary-dark: #0077b6;
+            --text-main: #e0e1dd;
+            --text-muted: #8d99ae;
+            --glow: 0 0 15px rgba(0, 229, 255, 0.4);
+            --glow-hover: 0 0 25px rgba(0, 229, 255, 0.7);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(0, 119, 182, 0.15), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(0, 229, 255, 0.1), transparent 25%);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            color: #fff;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            text-align: center;
+            padding: 30px 0 20px;
+            position: relative;
+        }
+
+        .profile-img-container {
+            width: 130px;
+            height: 130px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            padding: 5px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            box-shadow: var(--glow);
+            position: relative;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            background-color: #1a2a3a;
+            border: 3px solid var(--bg-color);
+        }
+
+        .hero h1 {
+            font-size: 2rem;
+            letter-spacing: -0.5px;
+            margin-bottom: 5px;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+        }
+
+        .hero p {
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .nfc-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 229, 255, 0.1);
+            border: 1px solid rgba(0, 229, 255, 0.3);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+        }
+
+        .nfc-badge i {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* --- QUICK ACTIONS GRID --- */
+        .action-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 15px;
+            border-radius: 12px;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn i {
+            font-size: 1.5rem;
+            color: var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .btn:active, .btn:hover {
+            transform: translateY(-2px);
+            border-color: var(--primary);
+            box-shadow: var(--glow);
+        }
+
+        .btn:active i, .btn:hover i {
+            color: #fff;
+        }
+
+        .btn-primary {
+            grid-column: span 2;
+            flex-direction: row;
+            background: linear-gradient(45deg, var(--primary-dark), var(--primary));
+            border: none;
+            color: #000;
+            font-weight: 800;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .btn-primary i {
+            color: #000;
+        }
+
+        .btn-primary:hover {
+            box-shadow: var(--glow-hover);
+            color: #000;
+        }
+
+        /* --- SECTIONS --- */
+        section {
+            margin-bottom: 35px;
+            animation: fadeIn 0.8s ease forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 8px;
+        }
+
+        .section-title i {
+            color: var(--primary);
+        }
+
+        /* --- CARDS --- */
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--primary);
+            border-radius: 4px 0 0 4px;
+        }
+
+        .card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .card h4 {
+            font-size: 0.9rem;
+            color: var(--primary);
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .card .date {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .card p, .card ul {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .card ul {
+            padding-left: 20px;
+            margin-top: 8px;
+        }
+
+        .card ul li {
+            margin-bottom: 5px;
+        }
+
+        /* --- SKILLS --- */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            background: rgba(0, 229, 255, 0.08);
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            color: var(--text-main);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .skill-tag i {
+            color: var(--primary);
+        }
+
+        /* --- GRID 2 COL --- */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (min-width: 480px) {
+            .grid-2 {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- HERO SECTION -->
+        <header class="hero">
+            <div class="profile-img-container">
+                <!-- Replace with your actual image URL or base64 string -->
+                <img src="https://ui-avatars.com/api/?name=Abdelkarim+Erraji&background=0d1b2a&color=00e5ff&size=256" alt="Abdelkarim Erraji" class="profile-img">
+            </div>
+            <h1>Abdelkarim <span>Erraji</span></h1>
+            <p>Ingénieur Logiciel Full Stack</p>
+            <p style="color: var(--primary); font-weight: 600; margin-top: -10px;">Java / Spring Boot</p>
+            
+            <div class="nfc-badge">
+                <i class="fa-solid fa-wifi"></i> Tap with NFC
+            </div>
+
+            <!-- ACTION BUTTONS -->
+            <div class="action-grid">
+                <button onclick="downloadVCard()" class="btn btn-primary">
+                    <i class="fa-solid fa-address-card"></i> Ajouter aux contacts
+                </button>
+                <a href="tel:+212661252184" class="btn">
+                    <i class="fa-solid fa-phone"></i> Appeler
+                </a>
+                <a href="mailto:abdelkarimerraji4@gmail.com" class="btn">
+                    <i class="fa-solid fa-envelope"></i> Email
+                </a>
+                <a href="https://linkedin.com/in/abdelkarim-erraji" target="_blank" class="btn">
+                    <i class="fa-brands fa-linkedin"></i> LinkedIn
+                </a>
+                <a href="https://github.com/Abdo115-6" target="_blank" class="btn">
+                    <i class="fa-brands fa-github"></i> GitHub
+                </a>
+                <!-- Update this link with your actual PDF CV link -->
+                <a href="#" target="_blank" class="btn">
+                    <i class="fa-solid fa-file-pdf"></i> Mon CV
+                </a>
+            </div>
+        </header>
+
+        <!-- ABOUT SECTION -->
+        <section>
+            <h2 class="section-title"><i class="fa-solid fa-user"></i> À propos de moi</h2>
+            <div class="card" style="border-left: none; background: rgba(0, 229, 255, 0.03); border: 1px solid rgba(0, 229, 255, 0.1);">
+                <p>Étudiant en <strong style="color: var(--primary);">5ème année d'ingénierie logicielle à l'EMSI</strong>, je recherche un <strong style="color: var(--primary);">stage PFE de 6 mois dès février 2027</strong>, avec une perspective de pré-embauche. Passionné par le développement <strong style="color: var(--primary);">Full Stack</strong>, les nouvelles technologies et l'innovation.</p>
+            </div>
+        </section>
+
+        <!-- SKILLS SECTION -->
+        <section>
+            <h2 class="section-title"><i class="fa-solid fa-code"></i> Compétences Techniques</h2>
+            
+            <div class="card" style="border-left-color: #f89820;">
+                <h4 style="color: #f89820;"><i class="fa-brands fa-java"></i> Back-end</h4>
+                <div class="skills-container">
+                    <span class="skill-tag">Java</span>
+                    <span class="skill-tag">Spring Boot</span>
+                    <span class="skill-tag">Node.js</span>
+                    <span class="skill-tag">Python / Django</span>
+                    <span class="skill-tag">API REST</span>
+                    <span class="skill-tag">Micro-services</span>
+                </div>
+            </div>
+
+            <div class="card" style="border-left-color: #61dafb;">
+                <h4 style="color: #61dafb;"><i class="fa-brands fa-react"></i> Front-end & Mobile</h4>
+                <div class="skills-container">
+                    <span class="skill-tag">Angular</span>
+                    <span class="skill-tag">React</span>
+                    <span class="skill-tag">Next.js</span>
+                    <span class="skill-tag">Thymeleaf</span>
+                    <span class="skill-tag">HTML / CSS / JS</span>
+                    <span class="skill-tag">Flutter</span>
+                </div>
+            </div>
+
+            <div class="card" style="border-left-color: #00758f;">
+                <h4 style="color: #00758f;"><i class="fa-solid fa-database"></i> Bases de données & DevOps</h4>
+                <div class="skills-container">
+                    <span class="skill-tag">SQL / PL/SQL</span>
+                    <span class="skill-tag">PostgreSQL</span>
+                    <span class="skill-tag">Oracle</span>
+                    <span class="skill-tag">MongoDB</span>
+                    <span class="skill-tag">Docker</span>
+                    <span class="skill-tag">Git / CI-CD</span>
+                    <span class="skill-tag">ERP Sage X3</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXPERIENCE SECTION -->
+        <section>
+            <h2 class="section-title"><i class="fa-solid fa-briefcase"></i> Expérience</h2>
+            
+            <div class="card">
+                <h3>Ingénieur Logiciel (Stage)</h3>
+                <h4>Mall Zellij · Médiouna, Casablanca</h4>
+                <span class="date">Juin – Août 2026 (3 mois)</span>
+                <ul>
+                    <li>Développement d'une application mobile de gestion des articles et des stocks.</li>
+                    <li>Conception d'une solution mobile connectée à l'ERP Sage X3.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>Développeur Angular & Java Spring Boot</h3>
+                <h4>Business IT Solutions (BITS) · Casablanca</h4>
+                <span class="date">Juin – Août 2025 (2 mois)</span>
+                <ul>
+                    <li>Développement full stack (Angular / Spring Boot) d'un système CRUD de factures.</li>
+                    <li>Génération de factures avec référence unique et téléchargement.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- PROJECTS SECTION -->
+        <section>
+            <h2 class="section-title"><i class="fa-solid fa-rocket"></i> Projets</h2>
+            
+            <div class="grid-2">
+                <div class="card">
+                    <h3>GAC-4</h3>
+                    <p style="font-size: 0.8rem; color: var(--primary); margin-bottom: 8px;">Java · Spring Boot · Thymeleaf · SQL</p>
+                    <p>Application web full stack avec architecture MVC et gestion avancée des sessions.</p>
+                </div>
+                
+                <div class="card">
+                    <h3>E-commerce d'œuvres d'art</h3>
+                    <p style="font-size: 0.8rem; color: var(--primary); margin-bottom: 8px;">React · Next.js · Supabase</p>
+                    <p>Catalogue, panier, navigation intuitive et paiement intégré avec API.</p>
+                </div>
+
+                <div class="card" style="grid-column: span 2;">
+                    <h3>Système de réservation hôtelière</h3>
+                    <p style="font-size: 0.8rem; color: var(--primary); margin-bottom: 8px;">Django · HTML/CSS/JS · SQLite</p>
+                    <p>Base relationnelle normalisée (3NF) et requêtes SQL complexes pour les disponibilités.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FORMATION & CERTIFICATIONS -->
+        <section>
+            <h2 class="section-title"><i class="fa-solid fa-graduation-cap"></i> Formation</h2>
+            <div class="card">
+                <h3>Cycle d'Ingénieur — Génie Logiciel</h3>
+                <h4>EMSI, Casablanca</h4>
+                <span class="date">5ème année · PFE dès février 2027</span>
+                <p style="margin-top: 10px;">Cours : JEE & Micro-services, DevOps, Flutter, Data Mining, Deep Learning, ERP.</p>
+            </div>
+
+            <h2 class="section-title" style="margin-top: 25px;"><i class="fa-solid fa-certificate"></i> Certifications</h2>
+            <div class="card" style="border-left-color: #f1c40f;">
+                <ul style="list-style-type: none; padding-left: 0;">
+                    <li style="margin-bottom: 8px;"><i class="fa-solid fa-check-circle" style="color: #f1c40f; margin-right: 8px;"></i> Oracle SQL Proficiency</li>
+                    <li style="margin-bottom: 8px;"><i class="fa-solid fa-check-circle" style="color: #f1c40f; margin-right: 8px;"></i> JavaScript Algorithms & Data Structures</li>
+                    <li style="margin-bottom: 8px;"><i class="fa-solid fa-check-circle" style="color: #f1c40f; margin-right: 8px;"></i> Programming for Everybody (Python)</li>
+                    <li><i class="fa-solid fa-check-circle" style="color: #f1c40f; margin-right: 8px;"></i> Introduction à la POO (C++)</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- LANGUAGES -->
+        <section>
+            <h2 class="section-title"><i class="fa-solid fa-globe"></i> Langues</h2>
+            <div class="grid-2">
+                <div class="card" style="text-align: center; border-left: none;">
+                    <h3>Arabe</h3>
+                    <p style="color: var(--primary);">Maternelle</p>
+                </div>
+                <div class="card" style="text-align: center; border-left: none;">
+                    <h3>Français</h3>
+                    <p style="color: var(--primary);">B1</p>
+                </div>
+                <div class="card" style="text-align: center; border-left: none; grid-column: span 2;">
+                    <h3>Anglais</h3>
+                    <p style="color: var(--primary);">B2</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            <p>Prêt à relever de nouveaux défis !</p>
+            <p style="margin-top: 10px;">&copy; 2024 Abdelkarim Erraji</p>
+        </footer>
+
+    </div>
+
+    <!-- SCRIPT FOR VCARD DOWNLOAD & ANIMATIONS -->
+    <script>
+        // Function to generate and download vCard
+        function downloadVCard() {
+            const vcard = `BEGIN:VCARD
+VERSION:3.0
+N:Erraji;Abdelkarim;;;
+FN:Abdelkarim Erraji
+ORG:EMSI
+TITLE:Ingénieur Logiciel Full Stack
+TEL;TYPE=CELL,VOICE:+212661252184
+EMAIL;TYPE=WORK,INTERNET:abdelkarimerraji4@gmail.com
+URL:https://linkedin.com/in/abdelkarim-erraji
+URL:https://github.com/Abdo115-6
+ADR;TYPE=WORK:;;Oulfa;Casablanca;;;Maroc
+END:VCARD`;
+
+            const blob = new Blob([vcard], { type: 'text/vcard' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Abdelkarim_Erraji.vcf';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }
+
+        // Scroll animation observer
+        document.addEventListener("DOMContentLoaded", () => {
+            const sections = document.querySelectorAll("section");
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = "1";
+                        entry.target.style.transform = "translateY(0)";
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            sections.forEach((section, index) => {
+                // Adding a slight delay for each section for a cascading effect
+                section.style.transitionDelay = `${index * 0.1}s`;
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
